@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center"><strong> Crear Publicación</strong> </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="avisoForm" (ngSubmit)="guardarAviso()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input formControlName="titulo"></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="avisoForm.get('titulo')?.invalid && avisoForm.get('titulo')?.touched">
+      El título es obligatorio y debe tener al menos 5 caracteres.
+    </ion-note>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+    <ion-note color="danger" *ngIf="avisoForm.get('descripcion')?.invalid && avisoForm.get('descripcion')?.touched">
+      La descripción es obligatoria y debe tener al menos 20 caracteres.
+    </ion-note>
+
+    <ion-button expand="block" (click)="tomarFoto()" type="button">
+      Tomar Foto
+    </ion-button>
+
+    <div *ngIf="imagenBase64" class="ion-margin-top">
+      <ion-img [src]="imagenBase64"></ion-img>
+    </div>
+
+    <ion-button expand="block" type="submit" [disabled]="avisoForm.invalid">
+      Guardar Aviso
+    </ion-button>
+    <br>
+    <ion-button expand="block" color="medium" [routerLink]="['/lista-avisos']">
+      Ver Publicaciones
+    </ion-button>
+  </form>
+
+</ion-content>

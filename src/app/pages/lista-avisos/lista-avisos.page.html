@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/crear-aviso"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let aviso of avisos; let i = index" lines="full">
+      <ion-thumbnail slot="start">
+        <img [src]="aviso.imagen" alt="Imagen del aviso" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{ aviso.titulo }}</h2>
+        <p>{{ aviso.descripcion }}</p>
+        <p><strong>Fecha:</strong> {{ aviso.fecha | date: 'yyyy-MM-dd' }}</p>
+      </ion-label>
+
+      <ion-button fill="clear" color="danger" slot="end" (click)="eliminarAviso(i)">
+        <ion-icon name="trash-sharp"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+
+
